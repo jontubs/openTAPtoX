@@ -1,0 +1,26 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'>
+<rect width='128' height='128' fill='white'/>
+<g fill='#111' stroke='#111' stroke-width='2' stroke-linejoin='round'>
+<polygon points='15,27 42,27 49,34 49,45 39,45 39,37 15,37'/>
+<polygon points='39,37 62,37 70,45 70,58 58,58 58,48 39,48'/>
+<polygon points='58,48 74,48 80,54 80,66 66,66 66,58 58,58'/>
+<polygon points='79,55 88,55 92,59 92,66 79,66'/>
+<polygon points='90,65 96,69 96,86 90,90 84,86 84,69'/>
+<polygon points='94,92 100,98 95,104 88,100'/>
+<polygon points='82,92 88,98 83,104 76,100'/>
+<polygon points='90,104 96,110 91,116 84,112'/>
+<polygon points='62,78 112,78 104,109 54,109' fill='none'/>
+<polygon points='60,74 110,74 118,80 112,84 62,84 54,80'/>
+<line x1='70' y1='78' x2='62' y2='109'/>
+<line x1='82' y1='78' x2='74' y2='109'/>
+<line x1='94' y1='78' x2='86' y2='109'/>
+<line x1='106' y1='78' x2='98' y2='109'/>
+<line x1='58' y1='88' x2='108' y2='88'/>
+<line x1='56' y1='98' x2='106' y2='98'/>
+</g>
+<g fill='#111' font-family='monospace' font-size='12' font-weight='700'>
+<text x='95' y='72'>0</text>
+<text x='82' y='72'>1</text>
+<text x='89' y='84'>0</text>
+</g>
+</svg>

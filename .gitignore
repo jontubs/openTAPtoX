@@ -1,0 +1,14 @@
+openTAPtoX_codex_handoff_current.zip
+__pycache__/
+/*.zip
+/firmware/openTAPtoX_esp32c6/secrets.h
+/docs/handover_*.md
+/firmware/*/build/
+/build/
+
+# Live captures, derived analysis, telemetry exports, and screenshots can contain
+# network topology, device identifiers, RF material, and household power data.
+/data/
+/docs/analysis/
+/docs/tigo_panel_*
+/assets/Screenshot *.png

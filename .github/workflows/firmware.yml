@@ -1,0 +1,55 @@
+name: Firmware
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: ESP32-C6
+            fqbn: esp32:esp32:esp32c6
+            build_dir: esp32c6
+          - target: ESP32-C3
+            fqbn: esp32:esp32:esp32c3
+            build_dir: esp32c3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check public-tree privacy
+        run: python tools/check_public_tree.py
+
+      - name: Install Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install ESP32 core and libraries
+        run: |
+          arduino-cli core update-index \
+            --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core install esp32:esp32@3.0.7 \
+            --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli lib install "PubSubClient@2.8"
+
+      - name: Prepare CI secrets stub
+        run: cp firmware/openTAPtoX_esp32c6/secrets.example.h firmware/openTAPtoX_esp32c6/secrets.h
+
+      - name: Check power semantics
+        run: bash tools/check_power_semantics.sh
+
+      - name: Run decoder tests
+        working-directory: tools/decoder
+        run: python -m unittest discover -p 'test_*.py'
+
+      - name: Compile firmware
+        run: |
+          arduino-cli compile \
+            --build-path "${RUNNER_TEMP}/${{ matrix.build_dir }}" \
+            --libraries "$GITHUB_WORKSPACE/firmware/common" \
+            --fqbn "${{ matrix.fqbn }}" \
+            firmware/openTAPtoX_esp32c6
